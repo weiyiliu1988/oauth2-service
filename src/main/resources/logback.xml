@@ -1,0 +1,36 @@
+<configuration>
+
+	<conversionRule conversionWord="coloredLevel"
+		converterClass="play.api.Logger$ColoredLevel" />
+
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<prudent>true</prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/var/log/oauth2-service.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+
+	<logger name="cn.com.studyshop" level="DEBUG">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<root level="ERROR">
+		<appender-ref ref="FILE" />
+	</root>
+
+</configuration>
